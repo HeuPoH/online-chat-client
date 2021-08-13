@@ -1,0 +1,59 @@
+$gray_1: rgb(245,245,245);
+$gray_2: rgb(204,202,202);
+$gray_3: rgb(235,235,235);
+$gray_4: rgb(179,179,179);
+$gray_5: rgb(220,220,220);
+
+$gold_1: rgb(250,247,207);
+$gold_2: rgb(191,173,149);
+$gold_3: rgb(253, 238, 28);
+$gold_4: rgb(255, 224, 123);
+
+$blue_1: rgb(0,124,190);
+$blue_2: rgb(118,136,193);
+$blue_3: rgb(56,140,214);
+$blue_4: rgb(27,103,173);
+$blue_5: rgb(163,203,240);
+
+$green_1: rgb(47, 223, 47);
+$green_2: rgb(0, 168, 14);
+$green_3: #b9ff98;
+
+$red_1: rgb(255, 119, 119);
+$red_2: rgb(253, 136, 136);
+$red_3: rgb(255, 204, 204);
+$red_4: #ffc0c0;
+
+$white_1: white;
+
+$body-background-color: $gray_5;
+
+$header-background-color: $blue_3;
+$header-color: $white_1;
+
+$container-background-color: $blue_3;
+$container-border-color: $gray_2;
+
+$footer-background-color: $gold_1;
+$footer-border-color: $gold_2;
+$footer-color: $white_1;
+
+$main-page-section-border-color: $blue_5;
+$main-page-section-color: $blue_4;
+$main-page-link-hover-border-left: $blue_2;
+$main-page-link-hover-background-color: $gold_1;
+
+$form-input-border-color: $green_1;
+$form-form-field-error-color: $red_1;
+
+$button-background-color: $green_2;
+$button-color: $white_1;
+
+$link-red-color: $red_2;
+$link-red-color-hover: $red_3;
+
+$link-gold-color: $gold_3;
+$link-gold-color-hover: $gold_4;
+
+$response-success-color: $green_3;
+$response-error-color: $red_4;

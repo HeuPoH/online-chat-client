@@ -1,0 +1,51 @@
+.form {
+    @include flex;
+
+    flex-direction: column;
+    padding: 5px;
+    row-gap: 5px;
+
+    & .form__field {
+        @include flex;
+
+        flex-direction: column;
+
+        &_input-bd-r {
+            border-radius: 5px;
+        }
+
+        & input {
+            height: 1.5rem;
+            text-indent: 5px;
+            border: 1px solid $form-input-border-color;
+        }
+
+        & span[data-text-error] {
+            display: none;
+            font-size: .8rem;
+            color: $form-form-field-error-color;
+        }
+
+        &_show-errors {
+            & input {
+                border-color: $form-form-field-error-color;
+            }
+
+            & span[data-text-error] {
+                display: block;
+            }
+        }
+    }
+}
+
+.button {
+    width: max-content;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &_green {
+        background: $button-background-color;
+        color: $button-color;
+    }
+}

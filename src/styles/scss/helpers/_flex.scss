@@ -1,0 +1,15 @@
+@mixin flex {
+    display: flex;
+    display: -webkit-flex;
+}
+
+@mixin inline-flex {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+}
+
+@mixin flex-wrap($wrap) {
+    flex-wrap: $wrap;
+    -webkit-flex-wrap: $wrap;
+    -ms-flex-wrap: $wrap;
+}
