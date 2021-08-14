@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 
 /**
- * Input component
+ * Input component.
+ * If the property vaidateInput is true, put the error message to property errorMessage.
  * 
  * @param {Object} props {
  *                            classNameLabel?: string,

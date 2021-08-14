@@ -1,8 +1,32 @@
-import { SIGN_IN_ERROR, SIGN_IN_RECEIVE, SIGN_OUT } from "../constants";
+import {
+    USER_UPDATE_DATA,
+    USER_REQUEST_RECEIVE,
+    USER_REQUEST_ERROR,
+    USER_DELETE_DATA } from "../constants";
 
 function userReducer(state = null, action) {
     switch(action.type) {
-        case SIGN_IN_RECEIVE:
+        case USER_REQUEST_RECEIVE:
+            return {
+                ...state,
+                response: {
+                    status: true,
+                    message: action.payload.message
+                }
+            };
+        break;
+
+        case USER_REQUEST_ERROR:
+            return {
+                ...state,
+                response: {
+                    status: false,
+                    message: action.payload.message
+                }
+            };
+        break;
+
+        case USER_UPDATE_DATA:
             return {
                 ...state,
                 ...action.payload,
@@ -10,17 +34,7 @@ function userReducer(state = null, action) {
             };
         break;
 
-        case SIGN_IN_ERROR:
-            return {
-                ...state,
-                response: {
-                    status: false,
-                    message: action.payload.error
-                }
-            };
-        break;
-
-        case SIGN_OUT:
+        case USER_DELETE_DATA:
             return { };
         break;
 

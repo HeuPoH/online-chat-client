@@ -14,7 +14,7 @@ function validationUserForm(props) {
 
     const settings = {
         nickname: value.length < 2 || value.length > 10,
-        password: (value.length <= 6),
+        password: value.length < 5 || value.length > 20,
         repeatPassword: value !== state.password.value,
     };
 

@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import Main from "./components/Main";
 import SignIn from "./components/user/signIn/SignIn";
 import SignOut from "./components/user/SignOut";
+import SignUp from "./components/user/signUp/SignUp";
 import { userSelector } from "./selectors/user";
 import Footer from "./shared/Footer";
 import Header from "./shared/Header";
@@ -26,7 +27,10 @@ class App extends React.Component {
                 <Header user={this.props.user} />
                 <section>
                     <Switch>
-                        <Route path="/user/signIn" exact>
+                        <Route path="/user/signUp">
+                            <SignUp />
+                        </Route>
+                        <Route path="/user/signIn">
                             <SignIn />
                         </Route>
                         <Route path="/user/signOut">

@@ -1,7 +1,50 @@
 import { query } from "../../api";
-import { SIGN_IN_ERROR, SIGN_IN_RECEIVE, SIGN_OUT } from "../constants";
+import {
+    USER_UPDATE_DATA,
+    USER_REQUEST_RECEIVE,
+    USER_REQUEST_ERROR,
+    USER_DELETE_DATA } from "../constants";
 
 /**
+ * Restore user state.
+ */
+ function userRestoreState() {
+    return async function(dispatch) {
+        try {
+            const response = await query.restoreState();
+
+            dispatch(userUpdateAction(response));
+        } catch(error) {
+            console.log(error);
+        }
+    }
+}
+
+/**
+ * Sign up.
+ * 
+ * @param {Object} candidateData  {
+ *                                     nickname: string,
+ *                                     password: string,
+ *                                     repeatPassword: string
+ *                                }
+ */
+ function userSignUpAction(candidateData) {
+    return async function(dispatch) {
+        try {
+            await query.signUp(candidateData);
+            
+            dispatch(userRequestReceiveAction('Успешная регистрация. Перейдите к авторизации'));
+        } catch(error) {
+            const errorMessage = error.errorMessage || 'Произошла неизвестная ошибка';
+
+            dispatch(userRequestErrorAction(errorMessage))
+        }
+    }
+}
+
+/**
+ * Sign in.
  * 
  * @param {Object} candidateData {
  *                                    nickname: string,
@@ -14,72 +57,82 @@ function userSignInAction(candidateData) {
         try {
             const response = await query.signIn(candidateData);
 
-            dispatch(userActionReceive(response));
+            dispatch(userUpdateAction(response));
         } catch(error) {
-            const errorMessage = error.errorMessage || 'Произошла ошибка';
+            const errorMessage = error.errorMessage || 'Произошла неизвестная ошибка';
 
-            dispatch(userActionError(errorMessage));
+            dispatch(userRequestErrorAction(errorMessage));
         }
     }
-}
-
-/**
- * Restore users state.
- */
-function userRestoreState() {
-    return async function(dispatch) {
-        try {
-            const response = await query.restoreState();
-
-            dispatch(userActionReceive(response));
-        } catch(error) {
-            console.log(error);
-        }
-    }
-}
-
-/**
- * 
- * @param {Object} userData 
- * @returns {Object}
- */
-function userActionReceive(userData) {
-    return {
-        type: SIGN_IN_RECEIVE,
-        payload: { ...userData }
-    };
-}
-
-/**
- * @param {string} error 
- * @returns {Object}
-*/
-function userActionError(error) {
-    return {
-        type: SIGN_IN_ERROR,
-        payload: { error }
-    };
 }
 
 /**
  * Sign out.
  */
-function userSignOutAction() {
+ function userSignOutAction() {
     return async function(dispatch) {
         try {
             await query.signOut();
 
-            dispatch(userSignOutActionReceive());
+            dispatch(userSignOutReceiveAction());
         } catch(error) {
             console.log(error);
         }
     }
 }
 
-function userSignOutActionReceive() {
+/**
+ * Add/Update user data in state
+ * 
+ * @param {Object} userData 
+ * @returns {Object}
+ */
+function userUpdateAction(userData) {
     return {
-        type: SIGN_OUT
+        type: USER_UPDATE_DATA,
+        payload: { ...userData }
+    };
+}
+
+/**
+ * Add receive message in response state of user
+ * 
+ * @param {string} message 
+ * @returns {Object}
+ */
+function userRequestReceiveAction(message) {
+    return {
+        type: USER_REQUEST_RECEIVE,
+        payload: { message }
     }
 }
 
-export { userSignInAction, userSignOutAction, userActionReceive, userRestoreState };
+/**
+ * Add error message in response state of user
+ * 
+ * @param {string} message 
+ * @returns {Object}
+*/
+function userRequestErrorAction(message) {
+    return {
+        type: USER_REQUEST_ERROR,
+        payload: { message }
+    };
+}
+
+/**
+ * Clear user state.
+ */
+function userSignOutReceiveAction() {
+    return {
+        type: USER_DELETE_DATA
+    }
+}
+
+export { 
+    userSignInAction,
+    userSignOutAction,
+    userRequestErrorAction,
+    userRestoreState,
+    userSignUpAction
+};
