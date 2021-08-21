@@ -1,4 +1,4 @@
-import { asyncQuery } from "./asyncQuery"
+import { asyncQuery } from "./asyncQuery";
 
 /**
  * Restore state.

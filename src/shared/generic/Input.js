@@ -38,7 +38,7 @@ export function Input(props) {
 
     return (
         <div className="form__field">
-            <label className={classNameLabel} htmlFor={id}>{label}{helpButton}:</label>
+            <label className={classNameLabel} htmlFor={id}>{label}{helpButton}</label>
             <input
                 className={validateInput ? `${classNameInput} form__field_input-bd-r` : classNameInput}
                 onChange={handlerOnChange}

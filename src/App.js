@@ -6,9 +6,10 @@ import Main from "./components/Main";
 import SignIn from "./components/user/signIn/SignIn";
 import SignOut from "./components/user/SignOut";
 import SignUp from "./components/user/signUp/SignUp";
-import { userSelector } from "./selectors/user";
+import Chat from "./components/chat/Chat";
 import Footer from "./shared/Footer";
 import Header from "./shared/Header";
+import { userSelector } from "./selectors/user";
 import { userRestoreState } from "./store/actions/user";
 import './styles/scss/index.scss';
 
@@ -35,6 +36,9 @@ class App extends React.Component {
                         </Route>
                         <Route path="/user/signOut">
                             <SignOut />
+                        </Route>
+                        <Route path="/chat">
+                            <Chat user={this.props.user} />
                         </Route>
                         <Route path="/">
                             <Main />

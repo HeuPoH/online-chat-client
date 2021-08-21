@@ -63,7 +63,7 @@ function userSignInAction(candidateData) {
 
             dispatch(userRequestErrorAction(errorMessage));
         }
-    }
+    };
 }
 
 /**
@@ -78,7 +78,7 @@ function userSignInAction(candidateData) {
         } catch(error) {
             console.log(error);
         }
-    }
+    };
 }
 
 /**
@@ -104,7 +104,7 @@ function userRequestReceiveAction(message) {
     return {
         type: USER_REQUEST_RECEIVE,
         payload: { message }
-    }
+    };
 }
 
 /**
@@ -126,7 +126,7 @@ function userRequestErrorAction(message) {
 function userSignOutReceiveAction() {
     return {
         type: USER_DELETE_DATA
-    }
+    };
 }
 
 export { 

@@ -25,6 +25,11 @@ $red_3: rgb(255, 204, 204);
 $red_4: #ffc0c0;
 
 $white_1: white;
+$white_2: rgba(199, 222, 255, 0.295);
+$white_3: rgb(235,235,235);
+$white_4: rgb(214, 224, 241);
+
+$violet_1: rgb(120, 107, 231);
 
 $body-background-color: $gray_5;
 
@@ -57,3 +62,19 @@ $link-gold-color-hover: $gold_4;
 
 $response-success-color: $green_3;
 $response-error-color: $red_4;
+
+$chat-background-color: rgba(255, 255, 255, 0.979);
+$chat-color: $violet_1;
+$chat-form-button-add-color: $violet_1;
+$chat-form-button-add-border-color: $violet_1;
+$chat-form-background-color: $white_2;
+$chat-form-border-color: $white_3;
+
+$chat-message-background-color: $white_4;
+$chat-message-selected-background-color: $violet_1;
+$chat-message-selected-color: $white_4;
+$chat-message-selected-head-border-color: $white_1;
+$chat-message-border-color: $violet_1;
+
+$chat-info-background-color: $white_2;
+$chat-info-border-color: $white_3;

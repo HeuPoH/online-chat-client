@@ -1,0 +1,99 @@
+.chat {
+    @include flex;
+
+    flex-direction: column;
+    background-color: $chat-background-color;
+    row-gap: 10px;
+    word-wrap: break-word;
+    color: $chat-color;
+    height: 80vh;
+
+    &__info {
+        padding: 0 0 0 20px;
+        background-color: $chat-info-background-color;
+        border: 2px solid $chat-info-border-color;
+    }
+
+    &__list {
+        @include flex;
+
+        flex-direction: column-reverse;
+        overflow-y: scroll;
+        row-gap: 20px;
+        padding: 0 10px;
+
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: rgb(255, 226, 172)
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border: 3px solid rgb(221, 167, 67);
+        }
+    }
+
+    &__button-upload {
+        width: 98%;
+        margin: 0 auto;
+
+        &:disabled {
+            opacity: .5;
+        }
+    }
+
+    & .form {
+        @include grid;
+        
+        grid-template-columns: 1fr .1fr;
+        column-gap: 5px;
+
+        background-color: $chat-form-background-color;
+        border: 2px solid $chat-form-border-color;
+
+        &__button-add {
+            border: 1px solid $chat-form-button-add-border-color;
+            color: $chat-form-button-add-color;
+
+            &:hover {
+                background-color: $chat-message-selected-background-color;
+                color: $chat-message-selected-color;
+            }
+        }
+    }
+}
+
+.message {
+    background-color: $chat-message-background-color;
+    padding: 10px;
+    border-radius: 20px;
+    border-bottom-left-radius: 0;
+    width: 200px;
+
+    &_selected {
+        background-color: $chat-message-selected-background-color;
+        color: $chat-message-selected-color;
+        margin-left: auto;
+        border-radius: 20px;
+        border-bottom-right-radius: 0;
+    }
+
+    &__head {
+        @include flex;
+
+        font-size: .9rem;
+        padding-left: 15px;
+        border-bottom: 2px solid $chat-message-border-color;
+    }
+
+    &_selected &__head {
+        border-bottom: 2px solid $chat-message-selected-head-border-color;
+    }
+
+    &__footer {
+        font-size: .7rem;
+        text-align: right;
+    }
+}

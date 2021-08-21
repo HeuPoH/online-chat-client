@@ -7,19 +7,20 @@ import PropTypes from 'prop-types';
  *                            id: string,
  *                            handlerOnSubmit: function,
  *                            name: string,
- *                            color: string
+ *                            color: string,
+ *                            className?: string
  *                       }
  * @returns 
  */
 export function Button(props) {
-    const { id, handlerOnSubmit, name, color } = props;
+    const { id, handlerOnSubmit, name, color, className, disabled } = props;
     const colors = {
         green: 'button_green',
         red: 'button_red'
     }
 
     return (
-        <button id={id} className={`button ${colors[color]}`} onClick={handlerOnSubmit}>
+        <button id={id} className={`button ${colors[color]} ${className}`} onClick={handlerOnSubmit} disabled={disabled}>
             {name}
         </button>
     );
@@ -32,5 +33,12 @@ Button.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
-    color: PropTypes.string
+    color: PropTypes.string,
+    className: PropTypes.string,
+    disabled: PropTypes.bool
+};
+
+Button.defaultProps = {
+    className: '',
+    disabled: false
 };

@@ -4,6 +4,8 @@ export const initState = {
         response: null
     },
     chat: {
-        messages: []
+        messages: [],
+        startRange: 0,
+        isLoading: false
     }
 };
