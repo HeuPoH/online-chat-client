@@ -10,7 +10,7 @@ function userReducer(state = null, action) {
             return {
                 ...state,
                 response: {
-                    status: true,
+                    result: true,
                     message: action.payload.message
                 }
             };
@@ -20,7 +20,7 @@ function userReducer(state = null, action) {
             return {
                 ...state,
                 response: {
-                    status: false,
+                    result: false,
                     message: action.payload.message
                 }
             };

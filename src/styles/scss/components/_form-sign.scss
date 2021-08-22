@@ -1,0 +1,42 @@
+.form-sign {
+    @include flex;
+
+    flex-direction: column;
+    padding: 5px 7px 10px 7px;
+    row-gap: 10px;
+
+
+    & h1 {
+        color: $form-sign-h1-color;
+        padding: 5px 0;
+        text-align: center;
+    }
+
+    & .field {
+        @include flex;
+
+        border: 1px solid $form-field-border-color;
+
+        &__icon {
+            background-color: $form-field-icon-background-color;
+            padding: 5px;
+            border-right: 1px solid $form-field-border-color;
+        }
+
+        & input {
+            text-indent: 5px;
+            padding: 5px;
+            width: 100%;
+        }
+
+        &_border-red {
+            border-color: $form-field-error-border-color;
+        }
+    }
+
+    &__button-sign {
+        width: 100%;
+        padding: 8px;
+    }
+}
+

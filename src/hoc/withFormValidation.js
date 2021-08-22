@@ -49,7 +49,7 @@ export function withFormValidation(Component) {
 
             for(let field in state) {
                 if(state[field].error) {
-                    document.getElementById(field).closest('.form__field').classList.add('form__field_show-errors');
+                    document.getElementById(field).closest('.field').classList.add('field_border-red');
                     hasError = true;
                 }
                 event.formData[field] = state[field].value;
@@ -78,9 +78,9 @@ export function withFormValidation(Component) {
             event.validatedField = { id, value, error };
 
             error ?
-                event.target.closest('.form__field').classList.add('form__field_show-errors')
+                event.target.closest('.field').classList.add('field_border-red')
                 :
-                event.target.closest('.form__field').classList.remove('form__field_show-errors');
+                event.target.closest('.field').classList.remove('field_border-red');
             handlerOnChange(event);
         }
 

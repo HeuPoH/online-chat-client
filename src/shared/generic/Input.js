@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 
 /**
  * Input component.
- * If the property vaidateInput is true, put the error message to property errorMessage.
  * 
  * @param {Object} props {
  *                            classNameLabel?: string,
@@ -14,9 +13,6 @@ import PropTypes from 'prop-types';
  *                            type?: string,
  *                            placeholder?: string,
  *                            autoFocus?: boolean,
- *                            validateInput?: boolean,
- *                            errorMessage?: string,
- *                            helpButton?: node,
  *                            role?: string
  *                       }
  * @returns {Object}
@@ -31,16 +27,13 @@ export function Input(props) {
             type,
             placeholder,
             autoFocus,
-            validateInput,
-            errorMessage,
-            helpButton,
             role } = props;
 
     return (
-        <div className="form__field">
-            <label className={classNameLabel} htmlFor={id}>{label}{helpButton}</label>
+        <>
+            { label ? <label className={classNameLabel} htmlFor={id}>{label}</label> : null}
             <input
-                className={validateInput ? `${classNameInput} form__field_input-bd-r` : classNameInput}
+                className={classNameInput}
                 onChange={handlerOnChange}
                 id={id}
                 value={value}
@@ -49,9 +42,7 @@ export function Input(props) {
                 autoFocus={autoFocus}
                 role={role}
             />
-    
-            {validateInput ? <span id={`${id}Error`} data-text-error>{errorMessage}</span> : null}
-        </div>
+        </>
     );
 }
 
@@ -65,9 +56,6 @@ Input.propTypes = {
     type: PropTypes.string,
     placeholder: PropTypes.string,
     autoFocus: PropTypes.bool,
-    validateInput: PropTypes.bool,
-    errorMessage: PropTypes.string,
-    helpButton: PropTypes.node,
     role: PropTypes.string
 };
 
@@ -77,8 +65,5 @@ Input.defaultProps = {
     type: "text",
     placeholder: "",
     autoFocus: false,
-    validateInput: false,
-    errorMessage: "",
-    helpButton: null,
     role: ""
 }

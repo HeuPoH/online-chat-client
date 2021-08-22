@@ -9,16 +9,15 @@ function AddMessageForm(props) {
 
     return (
         <form className="form">
-            <Input
-                id="message"
-                handlerOnChange={handlerOnChange}
-                handlerOnSubmit={handlerOnSubmit}
-                placeholder="Введите сообщение..."
-                value={state.message.value}
-
-                validateInput={true}
-                errorMessage="Не корректный текст"
-            />
+            <div className="field">
+                <Input
+                    id="message"
+                    handlerOnChange={handlerOnChange}
+                    handlerOnSubmit={handlerOnSubmit}
+                    placeholder="Введите сообщение..."
+                    value={state.message.value}
+                />
+            </div>
 
             <Button
                 id="send"

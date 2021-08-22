@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
+import PropTypes from 'prop-types';
 
 import { withAsyncResponse } from '../../../hoc/withAsyncResponse';
-import { userSelector } from '../../../selectors/user';
-import { validationUserForm } from '../../../settings/settings';
-import { userSignInAction } from '../../../store/actions/user';
+import { validationFields } from '../../../functions/validationFields';
+import { userActions } from '../../../store/actions/user';
 import SignInForm from './SignInForm';
 
 class SignIn extends React.Component {
@@ -50,7 +49,7 @@ class SignIn extends React.Component {
     */
     handlerOnChange(event) {
         this.setState({
-            [event.validatedField.id]: {
+            [ event.validatedField.id ]: {
                 value: event.validatedField.value,
                 error: event.validatedField.error }
             }
@@ -58,13 +57,13 @@ class SignIn extends React.Component {
     }
 
     render() {
-        if(this.props.user.id) return <Redirect to="/" />;
         document.title = 'Авторизация';
+        if(this.props.user.id) return <div className="error-nameplate">Вы авторизованы</div>;
 
         return (
             <SignInForm
                 state={this.state}
-                patternsToValidation={validationUserForm}
+                patternsToValidation={validationFields}
                 handlerOnSubmit={this.handlerOnSubmit}
                 handlerOnChange={this.handlerOnChange}
             />
@@ -74,8 +73,17 @@ class SignIn extends React.Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        signInReducer: candidateData => dispatch(userSignInAction(candidateData))
+        signInReducer: candidateData => dispatch(userActions.signIn(candidateData))
     }
 }
 
-export default connect(userSelector, mapDispatchToProps)(withAsyncResponse(SignIn));
+SignIn.propTypes = {
+    signInReducer: PropTypes.func,
+    user: PropTypes.shape({
+        id: PropTypes.number,
+        nickname: PropTypes.string,
+        role: PropTypes.number
+    })
+}
+
+export default connect(null, mapDispatchToProps)(withAsyncResponse(SignIn));

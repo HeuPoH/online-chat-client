@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
-import { withAsyncResponse } from '../../../hoc/withAsyncResponse';
+import PropTypes from 'prop-types';
 
-import { userSelector } from '../../../selectors/user';
-import { validationUserForm } from '../../../settings/settings';
-import { userSignUpAction } from '../../../store/actions/user';
+import { withAsyncResponse } from '../../../hoc/withAsyncResponse';
+import { validationFields } from '../../../functions/validationFields';
+import { userActions } from '../../../store/actions/user';
 import SignUpForm from './SignUpForm';
 
 class SignUp extends React.Component {
@@ -43,7 +42,7 @@ class SignUp extends React.Component {
     */
      handlerOnChange(event) {
         this.setState({
-            [event.validatedField.id]: {
+            [ event.validatedField.id ]: {
                 value: event.validatedField.value,
                 error: event.validatedField.error }
             }
@@ -61,14 +60,15 @@ class SignUp extends React.Component {
     }
 
     render() {
-        if(this.props.user.id) return <Redirect to="/" />;
+        document.title = 'Регистрация';
+        if(this.props.user.id) return <div className="error-nameplate">Вы авторизованы</div>;
 
         return (
             <SignUpForm
                 state={this.state}
                 handlerOnChange={this.handlerOnChange}
                 handlerOnSubmit={this.handlerOnSubmit}
-                patternsToValidation={validationUserForm}
+                patternsToValidation={validationFields}
             />
         );
     }
@@ -76,8 +76,17 @@ class SignUp extends React.Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        signUpReducer: candidateData => dispatch(userSignUpAction(candidateData))
+        signUpReducer: candidateData => dispatch(userActions.signUp(candidateData))
     }
 }
 
-export default connect(userSelector, mapDispatchToProps)( withAsyncResponse(SignUp));
+SignUp.propTypes = {
+    signUpReducer: PropTypes.func,
+    user: PropTypes.shape({
+        id: PropTypes.number,
+        nickname: PropTypes.string,
+        role: PropTypes.number
+    })
+}
+
+export default connect(null, mapDispatchToProps)(withAsyncResponse(SignUp));

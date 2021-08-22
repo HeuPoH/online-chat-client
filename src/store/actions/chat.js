@@ -1,5 +1,5 @@
 import { query } from "../../api";
-import { GET_MESSAGES_RECEIVE, UPLOAD_NEW_MESSAGES_RECEIVE, PUSH_MESSAGE, BLOCK_DOWNLOAD_MESSAGES } from "../constants";
+import { GET_MESSAGES_RECEIVE, UPLOAD_NEW_MESSAGES_RECEIVE, PUSH_MESSAGE, BLOCK_UPLOAD_MESSAGES } from "../constants";
 
 export const chatActions = {
     getMessages: startRange => messagesAction(startRange),
@@ -36,7 +36,7 @@ function messagesAction(startRange) {
  */
 function blockDownloadMessages() {
     return {
-        type: BLOCK_DOWNLOAD_MESSAGES
+        type: BLOCK_UPLOAD_MESSAGES
     }
 }
 

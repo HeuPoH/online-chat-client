@@ -1,15 +1,15 @@
+@import 'base/reset';
 @import 'helpers/variables';
 @import 'helpers/flex';
 @import 'helpers/grid';
-@import 'base/reset';
+@import 'helpers/icons';
+@import 'helpers/link';
+@import 'helpers/buttons';
 @import 'base/default';
 @import 'base/container';
-@import 'base/icons';
-@import 'helpers/link';
-
-@import 'layouts/main-page';
+@import 'components/main-page';
 @import 'layouts/header';
 @import 'layouts/footer';
-@import 'layouts/form';
-@import 'layouts/response';
-@import 'layouts/chat';
+@import 'components/form-sign';
+@import 'components/chat';
+@import 'layouts/info-tables';

@@ -6,7 +6,13 @@ function Header(props) {
 
     return (
         <header>
-            <nav>Добро пожаловать, {id ? `${nickname} | ` : 'Гость'} {id ? <Link className="link link_red" to="/user/signOut">Выйти</Link> : null}</nav>
+            <nav>
+                <Link className="link link_red" to="/">Главная</Link>
+                <div>Добро пожаловать,
+                    {id ? ` ${nickname} | ` : 'Гость'}
+                    {id ? <Link className="link link_red" to="/user/signOut">Выйти</Link> : null}
+                </div>
+            </nav>
         </header>
     );
 }

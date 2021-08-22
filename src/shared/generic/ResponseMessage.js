@@ -10,9 +10,9 @@ import PropTypes from 'prop-types';
  * @returns {Function}
  */
 export function ResponseMessage(props) {
-    const className = props.response?.status ? "response-message__successfully" : "response-message__error" ;
+    const className = props.response?.result ? "success-nameplate" : "error-nameplate" ;
 
-    return props.response ? <div className={`response-message ${className}`}>{props.response.message}</div> : null;
+    return props.response ? <div className={className}>{props.response.message}</div> : null;
 }
 
 ResponseMessage.propTypes = {

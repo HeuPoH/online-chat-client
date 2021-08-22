@@ -49,9 +49,25 @@
         
         grid-template-columns: 1fr .1fr;
         column-gap: 5px;
+        align-content: center;
 
-        background-color: $chat-form-background-color;
-        border: 2px solid $chat-form-border-color;
+        & .field {
+            @include flex;
+
+            align-items: center;
+            border: 2px solid $chat-form-border-color;
+
+            & input {
+                height: 100%;
+                width: 100%;
+                text-indent: 5px;
+                color: $chat-message-selected-background-color;
+            }
+
+            &_border-red {
+                border-color: $form-field-error-border-color;
+            }
+        }
 
         &__button-add {
             border: 1px solid $chat-form-button-add-border-color;

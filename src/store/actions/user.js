@@ -1,9 +1,16 @@
-import { query } from "../../api";
+import { query } from "../../api/index";
 import {
     USER_UPDATE_DATA,
     USER_REQUEST_RECEIVE,
     USER_REQUEST_ERROR,
     USER_DELETE_DATA } from "../constants";
+
+export const userActions = {
+    signIn: signInAction,
+    signOut: signOutAction,
+    restoreState: userRestoreState,
+    signUp: signUpAction
+}
 
 /**
  * Restore user state.
@@ -11,9 +18,9 @@ import {
  function userRestoreState() {
     return async function(dispatch) {
         try {
-            const response = await query.restoreState();
+            const response = await query.user.restoreState();
 
-            dispatch(userUpdateAction(response));
+            dispatch(updateStateAction(response));
         } catch(error) {
             console.log(error);
         }
@@ -29,16 +36,14 @@ import {
  *                                     repeatPassword: string
  *                                }
  */
- function userSignUpAction(candidateData) {
+ function signUpAction(candidateData) {
     return async function(dispatch) {
         try {
-            await query.signUp(candidateData);
+            await query.user.signUp(candidateData);
             
-            dispatch(userRequestReceiveAction('Успешная регистрация. Перейдите к авторизации'));
+            dispatch(requestReceiveAction('Успешная регистрация. Перейдите к авторизации'));
         } catch(error) {
-            const errorMessage = error.errorMessage || 'Произошла неизвестная ошибка';
-
-            dispatch(userRequestErrorAction(errorMessage))
+            dispatch(requestErrorAction(error.error))
         }
     }
 }
@@ -52,16 +57,14 @@ import {
  *                               }
  * @returns 
 */
-function userSignInAction(candidateData) {
+function signInAction(candidateData) {
     return async function(dispatch) {
         try {
-            const response = await query.signIn(candidateData);
+            const response = await query.user.signIn(candidateData);
 
-            dispatch(userUpdateAction(response));
+            dispatch(updateStateAction(response));
         } catch(error) {
-            const errorMessage = error.errorMessage || 'Произошла неизвестная ошибка';
-
-            dispatch(userRequestErrorAction(errorMessage));
+            dispatch(requestErrorAction(error.error));
         }
     };
 }
@@ -69,12 +72,12 @@ function userSignInAction(candidateData) {
 /**
  * Sign out.
  */
- function userSignOutAction() {
+ function signOutAction() {
     return async function(dispatch) {
         try {
-            await query.signOut();
+            await query.user.signOut();
 
-            dispatch(userSignOutReceiveAction());
+            dispatch(signOutReceiveAction());
         } catch(error) {
             console.log(error);
         }
@@ -87,7 +90,7 @@ function userSignInAction(candidateData) {
  * @param {Object} userData 
  * @returns {Object}
  */
-function userUpdateAction(userData) {
+function updateStateAction(userData) {
     return {
         type: USER_UPDATE_DATA,
         payload: { ...userData }
@@ -100,7 +103,7 @@ function userUpdateAction(userData) {
  * @param {string} message 
  * @returns {Object}
  */
-function userRequestReceiveAction(message) {
+function requestReceiveAction(message) {
     return {
         type: USER_REQUEST_RECEIVE,
         payload: { message }
@@ -113,7 +116,7 @@ function userRequestReceiveAction(message) {
  * @param {string} message 
  * @returns {Object}
 */
-function userRequestErrorAction(message) {
+function requestErrorAction(message) {
     return {
         type: USER_REQUEST_ERROR,
         payload: { message }
@@ -123,16 +126,8 @@ function userRequestErrorAction(message) {
 /**
  * Clear user state.
  */
-function userSignOutReceiveAction() {
+function signOutReceiveAction() {
     return {
         type: USER_DELETE_DATA
     };
 }
-
-export { 
-    userSignInAction,
-    userSignOutAction,
-    userRequestErrorAction,
-    userRestoreState,
-    userSignUpAction
-};

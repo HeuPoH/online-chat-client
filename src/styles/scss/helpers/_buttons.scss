@@ -1,0 +1,11 @@
+.button {
+    width: max-content;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &_green {
+        background: $button-background-color;
+        color: $button-color;
+    }
+}

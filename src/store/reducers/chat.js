@@ -1,4 +1,4 @@
-import { GET_MESSAGES_RECEIVE, UPLOAD_NEW_MESSAGES_RECEIVE, PUSH_MESSAGE, BLOCK_DOWNLOAD_MESSAGES } from "../constants";
+import { GET_MESSAGES_RECEIVE, UPLOAD_NEW_MESSAGES_RECEIVE, PUSH_MESSAGE, BLOCK_UPLOAD_MESSAGES } from "../constants";
 
 function chatReducer(state = null, action) {
     let newState;
@@ -6,11 +6,9 @@ function chatReducer(state = null, action) {
     switch(action.type) {
         case GET_MESSAGES_RECEIVE: case UPLOAD_NEW_MESSAGES_RECEIVE:
             newState = { ...state };
-
             action.type === GET_MESSAGES_RECEIVE 
                 ? newState.messages = [ ...action.payload.messages ]
                 : newState.messages = [ ...state.messages, ...action.payload.messages ];
-
             newState.startRange = newState.messages.length;
             //Total messages
             newState.count = action.payload.count;
@@ -21,7 +19,7 @@ function chatReducer(state = null, action) {
             return newState;
         break;
 
-        case BLOCK_DOWNLOAD_MESSAGES: 
+        case BLOCK_UPLOAD_MESSAGES: 
             return { ...state, isLoading: true };
         break;
 

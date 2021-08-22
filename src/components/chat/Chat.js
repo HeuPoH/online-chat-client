@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { chatSelector } from '../../selectors/chat';
 import { chatActions } from '../../store/actions/chat';
 import { MessagesList } from './MessagesList';
-import { validationChatForm } from '../../settings/settings';
+import { validationFields } from '../../functions/validationFields';
 import AddMessageForm from './AddMessageForm';
 import { Button } from '../../shared/generic/Button';
 import { query } from '../../api';
@@ -50,7 +50,8 @@ class Messages extends React.Component {
     }
 
     render() {
-        if(!this.props.user.id) return <div className="">Доступ только для авторизованных</div>;
+        document.title = 'Чат';
+        if(!this.props.user.id) return <div className="error-nameplate">Доступ только для авторизованных</div>;
         const { count, countHidden, messages, isLoading } = this.props.chat;
 
         return (
@@ -72,7 +73,7 @@ class Messages extends React.Component {
                     state={this.state}
                     handlerOnChange={this.handlerOnChangeInput}
                     handlerOnSubmit={this.handlerOnSubmitMessage}
-                    patternsToValidation={validationChatForm}
+                    patternsToValidation={validationFields}
                 />
             </div>
         );

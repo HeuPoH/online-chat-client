@@ -1,0 +1,30 @@
+@mixin nameplate {
+    background-repeat: no-repeat;
+    background-position: 5px center;
+    padding: 10px 10px 10px 50px;
+    border: 2px solid;
+}
+
+.error-nameplate {
+    @include nameplate;
+
+    background-image: url('../../icons/error.png');
+    background-color: #FFBABA;
+    color: #D8000C;
+}
+
+.success-nameplate {
+    @include nameplate;
+
+    background-image: url('../../icons/success.png');
+    background-color: #DFF2BF;
+    color: #4F8A10;
+}
+
+.info-nameplate {
+    @include nameplate;
+
+    background-image: url('../../icons/info.png');
+    background-color: #BDE5F8;
+    color: #00529B;
+}

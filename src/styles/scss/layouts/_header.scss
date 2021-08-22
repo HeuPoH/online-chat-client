@@ -3,6 +3,12 @@ header {
     color: $header-color;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    text-align: end;
     padding: 10px;
+
+    & nav {
+        @include flex;
+
+        justify-content: space-between;
+        color: $header-color;
+    }
 }

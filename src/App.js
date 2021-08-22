@@ -10,7 +10,7 @@ import Chat from "./components/chat/Chat";
 import Footer from "./shared/Footer";
 import Header from "./shared/Header";
 import { userSelector } from "./selectors/user";
-import { userRestoreState } from "./store/actions/user";
+import { userActions } from "./store/actions/user";
 import './styles/scss/index.scss';
 
 class App extends React.Component {
@@ -29,13 +29,13 @@ class App extends React.Component {
                 <section>
                     <Switch>
                         <Route path="/user/signUp">
-                            <SignUp />
+                            <SignUp user={this.props.user} />
                         </Route>
                         <Route path="/user/signIn">
-                            <SignIn />
+                            <SignIn user={this.props.user} />
                         </Route>
                         <Route path="/user/signOut">
-                            <SignOut />
+                            <SignOut user={this.props.user} />
                         </Route>
                         <Route path="/chat">
                             <Chat user={this.props.user} />
@@ -53,7 +53,7 @@ class App extends React.Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        restoreStateReducer: () => dispatch(userRestoreState())
+        restoreStateReducer: () => dispatch(userActions.restoreState())
     };
 }
 

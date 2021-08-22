@@ -3,6 +3,7 @@ $gray_2: rgb(204,202,202);
 $gray_3: rgb(235,235,235);
 $gray_4: rgb(179,179,179);
 $gray_5: rgb(220,220,220);
+$gray_6: rgb(86, 87, 94);
 
 $gold_1: rgb(250,247,207);
 $gold_2: rgb(191,173,149);
@@ -19,7 +20,7 @@ $green_1: rgb(47, 223, 47);
 $green_2: rgb(0, 168, 14);
 $green_3: #b9ff98;
 
-$red_1: rgb(131, 43, 43);
+$red_1: rgb(255, 0, 0);
 $red_2: rgb(253, 136, 136);
 $red_3: rgb(255, 204, 204);
 $red_4: #ffc0c0;
@@ -48,8 +49,13 @@ $main-page-section-color: $blue_4;
 $main-page-link-hover-border-left: $blue_2;
 $main-page-link-hover-background-color: $gold_1;
 
-$form-input-border-color: $green_1;
-$form-form-field-error-color: $red_1;
+
+//Form sign in and sign up.
+$form-sign-h1-color: $gray_6;
+$form-field-border-color: $gray_2;
+$form-field-icon-background-color: $gray_3;
+$form-field-error-border-color: $red_1;
+////////////////////////////
 
 $button-background-color: $green_2;
 $button-color: $white_1;

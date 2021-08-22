@@ -2,8 +2,6 @@
     @include flex;
 
     flex-direction: column;
-    row-gap: 7px;
-
     max-width: 600px;
     margin: 0 auto;
     border: 2px solid $container-border-color;

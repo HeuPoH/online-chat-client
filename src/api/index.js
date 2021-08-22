@@ -1,13 +1,7 @@
 import { chat } from "./chat/index";
-import { restoreState } from "./restoreState";
-import { signIn } from "./signIn";
-import { signOut } from "./signOut";
-import { signUp } from "./signUp";
+import { user } from "./user/index";
 
 export const query = {
-    signUp: signUp,
-    signIn: signIn,
-    signOut: signOut,
-    restoreState: restoreState,
+    user: { ...user },
     chat: { ...chat }
 };

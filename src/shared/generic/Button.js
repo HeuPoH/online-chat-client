@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
  *                            name: string,
  *                            color: string,
  *                            className?: string
+ *                            disabled?: booleab
  *                       }
  * @returns 
  */
